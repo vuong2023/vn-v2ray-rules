@@ -7,30 +7,30 @@
         "country": "geolite2/GeoLite2-Country-Locations-en.csv",
         "ipv4": "geolite2/GeoLite2-Country-Blocks-IPv4.csv",
         "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv",
-        "wantedList": ["ir", "ru", "us"]
+        "wantedList": ["vn", "ru", "us"]
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "ir",
-        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir.txt"
+        "name": "vn",
+        "uri": "https://raw.githubusercontent.com/vuong2023/vn-hosted-domains/main/src/data/vietnam-ip4.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "ir",
-        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir6.txt"
+        "name": "vn",
+        "uri": "https://raw.githubusercontent.com/vuong2023/vn-hosted-domains/main/src/data/vietnam-ip6.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "ir",
+        "name": "vn",
         "uri": "messengers-ip.txt"
       }
     },
@@ -72,8 +72,8 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "iranserver",
-        "uri": "iranserver-ip.txt"
+        "name": "vietnamserver",
+        "uri": "vietnamserver-ip.txt"
       }
     },
     {
@@ -294,7 +294,7 @@
       "action": "output",
       "args": {
         "outputName": "geoip-lite.dat",
-        "wantedList": ["ir", "private"]
+        "wantedList": ["vn", "private"]
       }
     },
     {
@@ -311,7 +311,7 @@
       "args": {
         "outputName": "Country.mmdb",
         "overwriteList": [
-          "ir",
+          "vn",
           "cn",
           "ru",
           "arvancloud",
@@ -342,7 +342,7 @@
       "action": "output",
       "args": {
         "outputName": "Country-lite.mmdb",
-        "wantedList": ["ir", "private"]
+        "wantedList": ["vn", "private"]
       }
     },
     {
