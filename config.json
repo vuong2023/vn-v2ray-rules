@@ -72,8 +72,8 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "vietnamserver",
-        "uri": "vietnamserver-ip.txt"
+        "name": "iranserver",
+        "uri": "iranserver-ip.txt"
       }
     },
     {
