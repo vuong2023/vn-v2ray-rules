@@ -26,8 +26,8 @@ jobs:
         run: |
           curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITE" -o IP2LOCATION-LITE-DB1.CSV.ZIP
           curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITEIPV6" -o IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP
-          unzip IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1
-          unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1.IPV6
+          unzip IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1.CSV
+          unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1.IPV6.CSV
       
       - name: Get ip2location-csv-converter script
         run: curl -sSLO https://raw.githubusercontent.com/ip2location/ip2location-python-csv-converter/master/ip2location_csv_converter/ip2location_csv_converter.py
