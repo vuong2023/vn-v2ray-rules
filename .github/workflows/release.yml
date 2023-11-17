@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Iran-v2ray-rules repository
+      - name: Checkout VN-v2ray-rules repository
         uses: actions/checkout@v4
 
       - name: Checkout domain-list-community repository
