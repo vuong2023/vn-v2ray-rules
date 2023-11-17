@@ -39,8 +39,8 @@ jobs:
     
       - name: Extract IR IPs
         run: |
-          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.CIDR.CSV | csvcut -c 1 | sed '1d' > ip2location-ir.txt
-          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.IPV6.CIDR.CSV | csvcut -c 1 | sed '/ffff/d' > ip2location-ir6.txt
+          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.CIDR.CSV | csvcut -c 1 | sed '1d' > ip2location-vn.txt
+          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.IPV6.CIDR.CSV | csvcut -c 1 | sed '/ffff/d' > ip2location-vn6.txt
     
       - name: Push assets to ip2location branch
         run: |
