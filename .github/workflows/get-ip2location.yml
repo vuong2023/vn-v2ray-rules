@@ -45,7 +45,7 @@ jobs:
       - name: Push assets to ip2location branch
         run: |
           mkdir -p ip2location
-          cp ip2location-ir.txt ip2location-ir6.txt ip2location
+          cp ip2location-vn.txt ip2location-vn6.txt ip2location
           cd ip2location || exit 1
           git init
           git config --local user.name "github-actions[bot]"
