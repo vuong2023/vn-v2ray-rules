@@ -30,7 +30,7 @@ jobs:
           unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1.IPV6
       
       - name: Get ip2location-csv-converter script
-        run: curl -sSLO https://raw.githubusercontent.com/vuong2023/vn-v2ray-rules/main/ip2location-csv-converter.py
+        run: curl -sSLO https://raw.githubusercontent.com/vuong2023/ip2location-python-csv-converter/master/ip2location_csv_converter/ip2location_csv_converter.py
     
       - name: Convert database from numeric to cidr
         run: |
