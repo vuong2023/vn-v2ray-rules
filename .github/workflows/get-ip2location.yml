@@ -27,15 +27,15 @@ jobs:
           curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITE" -o IP2LOCATION-LITE-DB1.CSV.ZIP
           curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITEIPV6" -o IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP
           unzip IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1
-          unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1.IPV6
+          unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1-IPV6
       
       - name: Get ip2location-csv-converter script
         run: curl -sSLO https://raw.githubusercontent.com/vuong2023/ip2location-python-csv-converter/master/ip2location_csv_converter/ip2location_csv_converter.py
     
       - name: Convert database from numeric to cidr
         run: |
-          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.NEW.CSV
-          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1.IPV6.CSV IP2LOCATION-LITE-DB1.IPV6.NEW.CSV
+          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1/IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.NEW.CSV
+          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1-IPV6/IP2LOCATION-LITE-DB1.IPV6.CSV IP2LOCATION-LITE-DB1.IPV6.NEW.CSV
     
       - name: Extract VN IPs
         run: |
