@@ -68,12 +68,12 @@ jobs:
 
       - name: Generate ir domains list
         run: |
-          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ir.txt
-          curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt
-          comm -23 ir.txt redundant-domains.txt > ir-lite.txt
-          echo "TOTAL_IR=$(wc -l < ir.txt)" >> $GITHUB_ENV
-          echo "TOTAL_IR_LITE=$(wc -l < ir-lite.txt)" >> $GITHUB_ENV
-          mv ir.txt ir-lite.txt release
+          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.vn$" | sed '1 a\vn\nxn--mgba3a4f16a' | LC_ALL=C sort -u > vn.txt
+          curl -sSLO https://raw.githubusercontent.com/vuong2023/vn-v2ray-rules/redundant/redundant-domains.txt
+          comm -23 vn.txt redundant-domains.txt > vn-lite.txt
+          echo "TOTAL_IR=$(wc -l < vn.txt)" >> $GITHUB_ENV
+          echo "TOTAL_IR_LITE=$(wc -l < vn-lite.txt)" >> $GITHUB_ENV
+          mv vn.txt vn-lite.txt release
 
       - name: Generate ads list
         run: |
