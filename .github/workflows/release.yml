@@ -66,19 +66,19 @@ jobs:
           rm -f GeoLite2-Country-CSV.zip
           mv GeoLite2* geolite2
 
-      - name: Generate ir domains list
+      - name: Generate vn domains list
         run: |
           curl -sSL https://raw.githubusercontent.com/vuong2023/vn-v2ray-rules/main/domains.txt | grep -Ev ".+\.vn$" | sed '1 a\vn\nxn--mgba3a4f16a' | LC_ALL=C sort -u > vn.txt
           curl -sSLO https://raw.githubusercontent.com/vuong2023/vn-v2ray-rules/redundant/redundant-domains.txt
           comm -23 vn.txt redundant-domains.txt > vn-lite.txt
           echo "TOTAL_IR=$(wc -l < vn.txt)" >> $GITHUB_ENV
-          echo "TOTAL_IR_LITE=$(wc -l < vn-lite.txt)" >> $GITHUB_ENV
+          echo "TOTAL_VN_LITE=$(wc -l < vn-lite.txt)" >> $GITHUB_ENV
           mv vn.txt vn-lite.txt release
 
       - name: Generate ads list
         run: |
           curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > ads.txt
-          echo "TOTAL_IR_ADS=$(wc -l < ads.txt)" >> $GITHUB_ENV
+          echo "TOTAL_VN_ADS=$(wc -l < ads.txt)" >> $GITHUB_ENV
 
       - name: Generate category-ads-all list
         run: |
@@ -212,9 +212,9 @@ jobs:
       - name: Generate Release Notes
         run: |
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-          echo "* IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "* Active IR Domains (Excluding .ir Domains, Used in geosite-lite) -> ${{ env.TOTAL_IR_LITE }}" >> RELEASE_NOTES
-          echo "* IR Ad Domains -> ${{ env.TOTAL_IR_ADS }}" >> RELEASE_NOTES
+          echo "* VN Domains (Excluding .vn Domains) -> ${{ env.TOTAL_VN }}" >> RELEASE_NOTES
+          echo "* Active VN Domains (Excluding .vn Domains, Used in geosite-lite) -> ${{ env.TOTAL_VN_LITE }}" >> RELEASE_NOTES
+          echo "* VN Ad Domains -> ${{ env.TOTAL_VN_ADS }}" >> RELEASE_NOTES
           echo "* All Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
           echo "* Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
           echo "* Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
