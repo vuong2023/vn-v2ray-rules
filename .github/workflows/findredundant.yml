@@ -28,7 +28,7 @@ jobs:
         run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
 
       - name: Get domains
-        run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
+        run: curl -sSL https://raw.githubusercontent.com/vuong2023/vn-v2ray-rules/main/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
 
       - name: Check Domains with Cloudflare
         shell: pwsh
