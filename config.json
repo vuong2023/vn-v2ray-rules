@@ -46,14 +46,6 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "parspack",
-        "uri": "parspack-ip.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
         "name": "cloudflare",
         "uri": "https://www.cloudflare.com/ips-v4"
       }
@@ -282,7 +274,6 @@
           "ru",
           "us",
           "vnserver",
-          "parspack",
           "cloudflare",
           "google",
           "amazon",
