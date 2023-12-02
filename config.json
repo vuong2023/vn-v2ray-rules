@@ -30,42 +30,8 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "vn",
-        "uri": "messengers-ip.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
         "name": "cn",
         "uri": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "arvancloud",
-        "uri": "arvancloud-ip.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "derakcloud",
-        "uri": "derakcloud-ipv4.txt",
-        "onlyIPType": "ipv4"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "derakcloud",
-        "uri": "derakcloud-ipv6.txt",
-        "onlyIPType": "ipv6"
       }
     },
     {
@@ -315,8 +281,6 @@
           "cn",
           "ru",
           "us",
-          "arvancloud",
-          "derakcloud",
           "vnserver",
           "parspack",
           "cloudflare",
