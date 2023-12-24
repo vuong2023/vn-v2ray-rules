@@ -157,8 +157,8 @@ jobs:
 
       - name: Generate sex domain list
         run: |
-          curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult-VN.txt > sed '/#/d' > sex-temp.txt
-          curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult.txt > sed '/#/d' > sex-temp.txt
+          curl -sSL https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/source/adult-VN.txt > sed '/#/d' > sex-temp.txt
+          curl -sSL https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/source/adult.txt > sed '/#/d' > sex-temp.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' sex-temp.txt > sex-sub.txt
           cat sex-temp.txt | LC_ALL=C grep -f sex-sub.txt | LC_ALL=C sort -u > sex-redundant-sub.txt
           comm -23 sex-temp.txt sex-redundant-sub.txt > sex.txt
