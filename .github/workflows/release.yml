@@ -86,7 +86,7 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/adult/hosts >> category-ads-all-raw.txt
           curl -sSL https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/gambling/filter-VN.txt >> category-ads-all-raw.txt
           curl -sSL https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/filter-VN.txt >> category-ads-all-raw.txt
-          curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-temp.txt
+          curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-raw.txt
           cat category-ads-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-temp.txt
 
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist.txt >> whitelist-raw.txt
@@ -155,6 +155,14 @@ jobs:
           echo "TOTAL_NSFW=$(wc -l < nsfw.txt)" >> $GITHUB_ENV
           mv nsfw.txt release
 
+      - name: Generate sex domain list
+        run: |
+          curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult-VN.txt > sex-all-raw.txt
+          curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > sex-all-raw.txt
+          cat sex-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > sex-all-temp.txt
+          comm -23 sex-all-temp.txt sex-redundant-sub.txt > sex.txt
+          echo "TOTAL_SEX=$(wc -l < sex.txt)" >> $GITHUB_ENV
+          mv sex.txt release
       - name: Generate geoip.dat, geoip-lite.dat, security-ip.dat, Country.mmdb, Country-lite.mmdb and Security-ip.mmdb files
         run: |
           go install -v github.com/vuong2023/geoip@latest
@@ -181,6 +189,7 @@ jobs:
           cp ../release/cryptominers.txt data/cryptominers
           cp ../release/social.txt data/social
           cp ../release/nsfw.txt data/nsfw
+          cp ../release/sex.txt data/sex
 
           go mod edit -go=1.21
           go get -u
@@ -223,6 +232,7 @@ jobs:
           echo "* CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
           echo "* Social Media Domains -> ${{ env.TOTAL_SOCIAL }}" >> RELEASE_NOTES
           echo "* NSFW Domains -> ${{ env.TOTAL_NSFW }}" >> RELEASE_NOTES
+          echo "* SEX Domains -> ${{ env.TOTAL_SEX }}" >> RELEASE_NOTES
 
       - name: Push assets to release branch
         if: ${{ !inputs.PRE_RELEASE }}
