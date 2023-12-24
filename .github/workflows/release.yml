@@ -160,9 +160,11 @@ jobs:
           curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult-VN.txt > sex-all-raw.txt
           curl -sSL https://github.com/bigdargon/hostsVN/raw/master/extensions/source/adult.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > sex-all-raw.txt
           cat sex-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > sex-all-temp.txt
+          cat sex-all-temp.txt | LC_ALL=C grep -f sex-sub.txt | LC_ALL=C sort -u > sex-redundant-sub.txt
           comm -23 sex-all-temp.txt sex-redundant-sub.txt > sex.txt
           echo "TOTAL_SEX=$(wc -l < sex.txt)" >> $GITHUB_ENV
           mv sex.txt release
+          
       - name: Generate geoip.dat, geoip-lite.dat, security-ip.dat, Country.mmdb, Country-lite.mmdb and Security-ip.mmdb files
         run: |
           go install -v github.com/vuong2023/geoip@latest
