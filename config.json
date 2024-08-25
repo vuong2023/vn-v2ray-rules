@@ -223,7 +223,7 @@
       "action": "add",
       "args": {
         "name": "openai",
-        "uri": "https://openai.com/gptbot-ranges.txt"
+        "uri": "https://raw.githubusercontent.com/vuong2023/script007/main/js/gptbot-ranges.txt"
       }
     },
     {
